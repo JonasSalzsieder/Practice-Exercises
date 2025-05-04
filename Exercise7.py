@@ -6,12 +6,18 @@ def add_to_list():
 
 def remove_from_list():
     user_input = input("Which item would you like to remove? Enter the index of the item please: ")
-    if user_input.isnumeric():
-        if 0 <= int(user_input) <= len(tasks):
-            tasks.pop(int(user_input))
+    if user_input.isdigit():
+        index = int(user_input) - 1
+        if int(index) >= len(tasks):
+            print("There is no item at that index in the list.")
+            print("You can only choose " + str(len(tasks)))
         else:
-            print("This is not a valid input")
-            user_input = input("Please enter a number: ")
+            if 0 <= int(index) <= len(tasks):
+                tasks.pop(int(index))
+            else:
+                print("This is not a valid input")
+                user_input = input("Please enter a number: ")
+
     else:
         print("This is not a valid input")
         user_input = input("Please enter a number: ")
@@ -42,5 +48,7 @@ while True:
         break
     else:
         print ("This is not a valid command. Please enter 'add', 'remove', 'show' or 'exit'")
+
+    show_list()
     
   
